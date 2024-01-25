@@ -1,3 +1,6 @@
+// Copyright 2024 Paksh Patel
+//  Copyright 2024 Paksh Patel
+
 #include <iostream>
 #include <iomanip>
 
@@ -7,29 +10,37 @@ using std::endl;
 
 int main()
 {
-
+    // Declare variables for initial account information
     int startMonth, startDay, startYear;
     double startBalance, currentBalance, avgBalance = 0, total = 0;
     char indicator, slash, currIndicator;
     int currentMonth, currentDay, currentYear, currentTotal;
     double amount;
 
+    // Define an array to store the number of days in each month
     const int daysPerMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
+    // Read initial account information from user input
     cin >> startMonth >> slash >> startDay >> slash >> startYear >> startBalance;
 
+    // Initialize variables with initial values
     currentMonth = startMonth;
     currentDay = startDay;
     currentYear = startYear;
     currentTotal = 0;
     currentBalance = startBalance;
 
+    // Declare variables for processing input data
     int month, day, year;
     int count = 0, totalDays = 0;
+
+    // Start an infinite loop for processing transactions
     while (true)
     {
+        // Read the transaction indicator ('d', 'c', or 'q')
         cin >> indicator;
 
+        // Check if the indicator is 'q' to quit the loop
         if (indicator == 'q')
         {
             if (currIndicator == 'd')
@@ -39,11 +50,13 @@ int main()
             break;
         }
 
+        // Read the transaction date and amount
         cin >> month >> slash >> day >> slash >> year >> amount;
 
-        // Finds if it is leap year and what the total days are;
+        // Check if the current year is a leap year
         bool leapYear = (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0));
 
+        // Calculate the total days for the current month
         if (month == startMonth)
         {
             totalDays = day - startDay + 1;
@@ -70,6 +83,7 @@ int main()
         else
             break;
 
+        // Calculate the total balance based on the transaction type
         if (totalDays > 30)
         {
             total += (currentBalance * (31 - currentTotal));
@@ -85,7 +99,7 @@ int main()
             total += currentBalance * (totalDays - currentTotal);
         }
 
-        // Works
+        // Check for chronological order of transactions
         if ((month < currentMonth && year < currentYear) || (day < currentDay && month == currentMonth) || year < currentYear)
         {
             cout << "Entries must be provided in chronological order." << endl;
@@ -94,7 +108,7 @@ int main()
             break;
         }
 
-        // Credit and debit
+        // Update current transaction details
         switch (indicator)
         {
         case 'd':
@@ -110,7 +124,6 @@ int main()
             break;
         }
 
-        // cout << total << endl;
         currentMonth = month;
         currentDay = day;
         currentYear = year;
@@ -119,16 +132,16 @@ int main()
         count++;
     }
 
+    // Calculate and display the average balance
     if (indicator == 'q')
     {
         avgBalance = total / totalDays;
-        // cout << totalDays << endl;
-        // cout << total << endl;
+
         cout << totalDays << "-day average balance (" << startMonth << slash << startDay << slash << startYear << "-"
              << month << slash << day << slash << year << "): $" << std::fixed << std::setprecision(2) << avgBalance << endl;
     }
 
-    // Fix
+    // Calculate and display the 30-day average balance if applicable
     if (totalDays > 30)
     {
         avgBalance = total / 30;
