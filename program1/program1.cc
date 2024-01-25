@@ -1,5 +1,4 @@
 // Copyright 2024 Paksh Patel
-//  Copyright 2024 Paksh Patel
 
 #include <iostream>
 #include <iomanip>
@@ -8,8 +7,7 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-int main()
-{
+int main() {
     // Declare variables for initial account information
     int startMonth, startDay, startYear;
     double startBalance, currentBalance, avgBalance = 0, total = 0;
@@ -21,7 +19,8 @@ int main()
     const int daysPerMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     // Read initial account information from user input
-    cin >> startMonth >> slash >> startDay >> slash >> startYear >> startBalance;
+    cin >> startMonth >> slash >> startDay >>
+    slash >> startYear >> startBalance;
 
     // Initialize variables with initial values
     currentMonth = startMonth;
@@ -35,14 +34,12 @@ int main()
     int count = 0, totalDays = 0;
 
     // Start an infinite loop for processing transactions
-    while (true)
-    {
+    while (true) {
         // Read the transaction indicator ('d', 'c', or 'q')
         cin >> indicator;
 
         // Check if the indicator is 'q' to quit the loop
-        if (indicator == 'q')
-        {
+        if (indicator == 'q') {
             if (currIndicator == 'd')
                 total += (currentBalance);
             else if (currIndicator == 'c')
@@ -57,66 +54,56 @@ int main()
         bool leapYear = (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0));
 
         // Calculate the total days for the current month
-        if (month == startMonth)
-        {
+        if (month == startMonth) {
             totalDays = day - startDay + 1;
-        }
-        else if (month == startMonth + 1 || (startMonth == 12 && month == 1))
-        {
-            if (leapYear && startMonth == 2)
+        } else if (month == startMonth + 1 ||
+        (startMonth == 12 && month == 1)) {
+            if (leapYear && startMonth == 2) {
                 totalDays = ((29 - startDay) + day + 1);
-            else
-            {
+             } else {
                 totalDays = daysPerMonth[startMonth - 1] - startDay + day + 1;
             }
-        }
-        else if (month == startMonth + 2)
-        {
-            if (currentTotal <= 30)
-                totalDays = ((daysPerMonth[startMonth - 1] - startDay) + daysPerMonth[startMonth] + day + 1);
-            else
-            {
+        } else if (month == startMonth + 2) {
+            if (currentTotal <= 30) {
+                totalDays = ((daysPerMonth[startMonth - 1] - startDay)
+                + daysPerMonth[startMonth] + day + 1);
+            } else {
                 total = startBalance * 30;
                 break;
             }
-        }
-        else
+        } else {
             break;
-
+        }
         // Calculate the total balance based on the transaction type
-        if (totalDays > 30)
-        {
+        if (totalDays > 30) {
             total += (currentBalance * (31 - currentTotal));
             break;
         }
 
-        if (count == 0)
-        {
+        if (count == 0) {
             total = currentBalance * (totalDays - 1);
-        }
-        else
-        {
+        } else {
             total += currentBalance * (totalDays - currentTotal);
         }
 
         // Check for chronological order of transactions
-        if ((month < currentMonth && year < currentYear) || (day < currentDay && month == currentMonth) || year < currentYear)
-        {
+        if ((month < currentMonth && year < currentYear) ||
+        (day < currentDay && month == currentMonth) || year < currentYear) {
             cout << "Entries must be provided in chronological order." << endl;
-            cout << month << slash << day << slash << year << " entered after " << currentMonth << slash << currentDay
+            cout << month << slash << day << slash << year <<
+            " entered after " << currentMonth << slash << currentDay
                  << slash << currentYear << endl;
             break;
         }
 
         // Update current transaction details
-        switch (indicator)
-        {
+        switch (indicator) {
         case 'd':
             currentBalance -= amount;
-            if (currentBalance < 0)
-            {
+            if (currentBalance < 0) {
                 currentBalance -= 15;
-                cout << "Overdraft on " << month << slash << day << slash << year << ". $15 overdraft fee assessed." << endl;
+                cout << "Overdraft on " << month << slash << day <<
+                slash << year << ". $15 overdraft fee assessed." << endl;
             }
             break;
         case 'c':
@@ -133,29 +120,29 @@ int main()
     }
 
     // Calculate and display the average balance
-    if (indicator == 'q')
-    {
+    if (indicator == 'q') {
         avgBalance = total / totalDays;
 
-        cout << totalDays << "-day average balance (" << startMonth << slash << startDay << slash << startYear << "-"
-             << month << slash << day << slash << year << "): $" << std::fixed << std::setprecision(2) << avgBalance << endl;
+        cout << totalDays << "-day average balance (" <<
+        startMonth << slash << startDay << slash << startYear << "-"
+             << month << slash << day << slash << year << "): $" <<
+             std::fixed << std::setprecision(2) << avgBalance << endl;
     }
 
     // Calculate and display the 30-day average balance if applicable
-    if (totalDays > 30)
-    {
+    if (totalDays > 30) {
         avgBalance = total / 30;
 
-        if (currentMonth == startMonth && currentYear == startYear)
-        {
-            cout << "30-day average balance (" << startMonth << slash << startDay << slash << startYear << "-"
-                 << month << slash << (startDay + 29) << slash << year << "): $" << std::fixed << std::setprecision(2)
+        if (currentMonth == startMonth && currentYear == startYear) {
+            cout << "30-day average balance (" << startMonth <<
+             slash << startDay << slash << startYear << "-"
+                 << month << slash << (startDay + 29) << slash
+                  << year << "): $" << std::fixed << std::setprecision(2)
                  << avgBalance << endl;
-        }
-        else if (currentMonth == startMonth + 1 && currentYear == startYear)
-        {
+        } else if (currentMonth == startMonth + 1 && currentYear == startYear) {
             int new_day;
-            if ((year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) && startMonth == 2)
+            if ((year % 400 == 0 || (year % 4 == 0
+            && year % 100 != 0)) && startMonth == 2)
                 new_day = 30 - (30 - startDay);
             else
                 new_day = 30 - ((daysPerMonth[startMonth - 1] + 1) - startDay);
