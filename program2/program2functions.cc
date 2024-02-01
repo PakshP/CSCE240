@@ -26,28 +26,38 @@ int PreviousPrime(int start) {
 
 // Implementation of ToClosestPrime function
 int ToClosestPrime(int num) {
-    if (IsPrime(num)) return 0;
+    if (IsPrime(num))
+        return 0;
 
     int nextPrime = NextPrime(num);
     int prevPrime = PreviousPrime(num);
 
-    if (num - prevPrime <= nextPrime - num) return prevPrime - num;
-    return nextPrime - num;
+    int distToNext = abs(nextPrime - num);
+    int distToPrev = abs(num - prevPrime);
+
+    if (distToNext > distToPrev) {
+        return prevPrime - num;
+    } else {
+        return nextPrime - num;
+    }
 }
 
 // Implementation of PrintPrimesBetween function
 void PrintPrimesBetween(int lower, int upper, bool inclusive) {
     bool firstPrint = true;
-    for (int i = lower; i <= upper; ++i) {
-        if (IsPrime(i) && (inclusive || (i != lower && i != upper))) {
-            if (!firstPrint) std::cout << ", ";
+    // Adjust the start of the loop based on 'inclusive'
+    int start = inclusive ? lower : lower + 1;
+    // Adjust the loop condition to include 'upper' if 'inclusive' is true
+    for (int i = start; i <= (inclusive ? upper : upper - 1); ++i) {
+        if (IsPrime(i)) {
+            if (!firstPrint) {
+                std::cout << ", ";
+            }
             std::cout << i;
             firstPrint = false;
         }
     }
-    std::cout << std::endl;
 }
-
 // Implementation of LargestPrimeSequence function
 int LargestPrimeSequence(int num) {
     #include <string>
@@ -72,35 +82,35 @@ int LargestPrimeSequence(int num) {
 void PrintAsDollarsAndCents(int amount) {
     int dollars = amount / 100;
     int cents = amount % 100;
-    printf("$%d.%02d\n", dollars, cents);
+    printf("$%d.%02d", dollars, cents);
 }
 
 // Implementation of MakePurchase function
-bool MakePurchase(int cost, int &twentyDollarBills, int &tenDollarBills,
-                  int &fiveDollarBills, int &oneDollarBills, int &quarters,
-                  int &dimes, int &nickels, int &pennies) {
+bool MakePurchase(int cost, int *twentyDollarBills, int *tenDollarBills,
+                  int *fiveDollarBills, int *oneDollarBills, int *quarters,
+                  int *dimes, int *nickels, int *pennies) {
     // Convert all amounts to cents for easier calculations
-    int total = twentyDollarBills * 2000 + tenDollarBills * 1000 +
-                fiveDollarBills * 500 + oneDollarBills * 100 + quarters * 25 +
-                dimes * 10 + nickels * 5 + pennies;
+    int total = *twentyDollarBills * 2000 + *tenDollarBills * 1000 +
+                *fiveDollarBills * 500 + *oneDollarBills * 100 +
+                *quarters * 25 + *dimes * 10 + *nickels * 5 + *pennies;
     if (cost > total) return false;
 
     int change = total - cost;
-    twentyDollarBills = change / 2000;
+    *twentyDollarBills = change / 2000;
     change %= 2000;
-    tenDollarBills = change / 1000;
+    *tenDollarBills = change / 1000;
     change %= 1000;
-    fiveDollarBills = change / 500;
+    *fiveDollarBills = change / 500;
     change %= 500;
-    oneDollarBills = change / 100;
+    *oneDollarBills = change / 100;
     change %= 100;
-    quarters = change / 25;
+    *quarters = change / 25;
     change %= 25;
-    dimes = change / 10;
+    *dimes = change / 10;
     change %= 10;
-    nickels = change / 5;
+    *nickels = change / 5;
     change %= 5;
-    pennies = change;
+    *pennies = change;
 
     return true;
 }
