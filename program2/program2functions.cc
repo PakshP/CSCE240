@@ -45,9 +45,7 @@ int ToClosestPrime(int num) {
 // Implementation of PrintPrimesBetween function
 void PrintPrimesBetween(int lower, int upper, bool inclusive) {
     bool firstPrint = true;
-    // Adjust the start of the loop based on 'inclusive'
     int start = inclusive ? lower : lower + 1;
-    // Adjust the loop condition to include 'upper' if 'inclusive' is true
     for (int i = start; i <= (inclusive ? upper : upper - 1); ++i) {
         if (IsPrime(i)) {
             if (!firstPrint) {
@@ -86,31 +84,98 @@ void PrintAsDollarsAndCents(int amount) {
 }
 
 // Implementation of MakePurchase function
-bool MakePurchase(int cost, int *twentyDollarBills, int *tenDollarBills,
-                  int *fiveDollarBills, int *oneDollarBills, int *quarters,
-                  int *dimes, int *nickels, int *pennies) {
-    // Convert all amounts to cents for easier calculations
-    int total = *twentyDollarBills * 2000 + *tenDollarBills * 1000 +
-                *fiveDollarBills * 500 + *oneDollarBills * 100 +
-                *quarters * 25 + *dimes * 10 + *nickels * 5 + *pennies;
-    if (cost > total) return false;
+bool MakePurchase(int cost, int& twentyDollarBills, int& tenDollarBills,
+                  int& fiveDollarBills, int& oneDollarBills, int& quarters,
+                  int& dimes, int& nickels, int& pennies) {
+  int total_money = twentyDollarBills * 2000 + tenDollarBills * 1000 +
+  fiveDollarBills * 500 + oneDollarBills * 100 + quarters * 25 + dimes * 10 +
+  nickels * 5 + pennies;
 
-    int change = total - cost;
-    *twentyDollarBills = change / 2000;
-    change %= 2000;
-    *tenDollarBills = change / 1000;
-    change %= 1000;
-    *fiveDollarBills = change / 500;
-    change %= 500;
-    *oneDollarBills = change / 100;
-    change %= 100;
-    *quarters = change / 25;
-    change %= 25;
-    *dimes = change / 10;
-    change %= 10;
-    *nickels = change / 5;
-    change %= 5;
-    *pennies = change;
+  if (total_money < cost) {
+    return false;
+  }
 
-    return true;
+  while (abs(2000 - cost) < abs(1000 - cost) &&
+         twentyDollarBills > 0 && cost > 0) {
+    twentyDollarBills--;
+    cost -= 2000;
+  }
+  while (abs(1000 - cost) < abs(500 - cost) &&
+         tenDollarBills > 0 && cost > 0) {
+    tenDollarBills--;
+    cost -= 1000;
+  }
+  while (abs(500 - cost) < abs(100 - cost) &&
+         fiveDollarBills > 0 && cost > 0) {
+    fiveDollarBills--;
+    cost -= 500;
+  }
+  while (abs(100 - cost) < abs(25 - cost) &&
+         oneDollarBills > 0 && cost > 0) {
+    oneDollarBills--;
+    cost -= 100;
+  }
+  while (abs(25 - cost) < abs(10 - cost) &&
+         quarters > 0 && cost > 0) {
+    quarters--;
+    cost -= 25;
+  }
+  while (abs(10 - cost) < abs(5 - cost) &&
+         dimes > 0 && cost > 0) {
+    dimes--;
+    cost -= 10;
+  }
+  while (abs(5 - cost) > 1 &&
+         nickels > 0 && cost > 0) {
+    nickels--;
+    cost -= 5;
+  }
+  while (abs(1 - cost) < 0 &&
+         pennies > 0 && cost > 0) {
+    pennies--;
+    cost--;
+  }
+  if (cost < 0) {
+    int change = -1 * cost;
+    while (abs(2000 - change) <= abs(1000 - change) &&
+           change - 2000 >= 0) {
+      twentyDollarBills++;
+      change -= 2000;
+    }
+    while (abs(1000 - change) <= abs(500 - change) &&
+               change - 1000 >= 0) {
+      tenDollarBills++;
+      change -= 1000;
+    }
+    while (abs(500 - change) <= abs(100 - change) &&
+           change - 500 >= 0) {
+      fiveDollarBills++;
+      change -= 500;
+    }
+    while (abs(100 - change) <= abs(25 - change) &&
+           change - 100 >= 0) {
+      oneDollarBills++;
+      change -= 100;
+    }
+    while (abs(25 - change) < abs(10 - change) &&
+           change - 25 >= 0) {
+      quarters++;
+      change -= 25;
+    }
+    while (abs(10 - change) < abs(5 - change) &&
+           change - 10 >= 0) {
+      dimes++;
+      change -= 10;
+    }
+    while (abs(5 - change) < abs(1 - change) &&
+           change - 5 >= 0) {
+      nickels++;
+      change -= 5;
+    }
+    while (change - 1 >= 0) {
+      pennies++;
+      change--;
+    }
+  }
+  return true;
 }

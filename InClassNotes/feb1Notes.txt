@@ -1,0 +1,58 @@
+Terms: Files
+    source file
+    object code
+    executable
+    header file
+
+Terms: Code
+    comments
+
+    preprocessor directive
+        start with #, handles before compiler converts
+            endif
+            ifndif
+    declare - 
+    initialize - 
+
+Terms: Operators
+    stream insertion - << getting cout
+    stream extraction - >> getting cin
+    assignment operator - '='
+    arithmetic operators - +, -, *, /, %
+    arithmetic assignment - +=, -=, *=, /=, %=
+    pre/post increment/decrement - ++, --
+    relational operators - <, <=, >, >=,
+
+Terms: Casting
+    implicit casting - just happens, dont tell it to
+    explicit casting - 'static_cast<type>(var)' tell it to treat a variable as another type
+
+Control
+    if/else
+    ?: (conditional operator)
+    switch
+    while
+    do/while
+    for
+
+Terms: functions
+    return type
+    name
+    parameters
+    arguments
+    prototype
+    signature
+    definition / implementaion
+    call
+    reference parameters vs value parameters (why, how, affect)
+    overload
+    default arguments
+
+Style
+    copyright
+    indent two spaces
+    variable lowercase and underscores
+    NO namespace using statements
+    function names behin with capital
+    letter and use mixed case
+
