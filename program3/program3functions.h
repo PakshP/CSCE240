@@ -9,6 +9,6 @@ bool IsAnagram(const char array1[], const char array2[],
                 bool caseSensitive = false);
 bool Replace1With2(char array[], int size, char findChar,
                     char replaceChar1, char replaceChar2);
-void SwapRowsAndColumns(int array[][kSquareSize], int size);
+void SwapRowsAndColumns(int array[][10], int size);
 
 #endif  // PROGRAM3_PROGRAM3FUNCTIONS_H_
