@@ -1,6 +1,6 @@
 // Copyright 2024 Paksh Patel
-#ifndef _MONETARYUNITY_H_
-#define _MONETARYUNITY_H_
+#ifndef _MONETARYUNIT_H_
+#define _MONETARYUNIT_H_
 #include<iostream>
 #include<string>
 using std::string;
@@ -33,5 +33,5 @@ class MonetaryUnit {
   double _unit_amount;  // Value relative to 1 USD
 };
 
-#endif  // _MONETARYUNITY_H_
+#endif  // _MONETARYUNIT_H_
 

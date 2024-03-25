@@ -6,7 +6,7 @@ using std::ostream;
 #include<string>
 using std::string;
 
-#include "MonetaryUnity.h"
+#include "MonetaryUnit.h"
 
 // Constructor
 MonetaryUnit::MonetaryUnit(string name, string symbol, double amount) :

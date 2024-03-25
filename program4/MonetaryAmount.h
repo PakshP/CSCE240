@@ -1,7 +1,7 @@
 // Copyright 2024 Paksh Patel
 #ifndef _MONETARY_AMOUNT_H_
 #define _MONETARY_AMOUNT_H_
-#include "MonetaryUnity.h"
+#include "MonetaryUnit.h"
 #include <iostream>
 using std::ostream;
 
