@@ -7,15 +7,13 @@ using std::string;
 
 namespace csce240_programming_assignment_5 {
 
-SongRecording::SongRecording(const string& title,
-                             const string& primaryArtist,
-                             int trackLength,
-                             int numArtists)
-    : title(title), trackLength(trackLength),
-      numArtists(numArtists > 0 ? numArtists : 1) {
-  artistNames = new string[numArtists];
+SongRecording::SongRecording(const string& title, const string& primaryArtist,
+                             int trackLength, int numArtists)
+    : title(title), trackLength(trackLength >= 0 ?
+      trackLength : 0), numArtists(numArtists > 0 ? numArtists : 1) {
+  artistNames = new string[this->numArtists];
   artistNames[0] = primaryArtist;  // Assigning the primary artist
-  for (int i = 1; i < numArtists; ++i) {
+  for (int i = 1; i < this->numArtists; ++i) {
     artistNames[i] = "unknown";  // Fill remaining slots with "unknown"
   }
 }
@@ -31,16 +29,17 @@ SongRecording::SongRecording(const SongRecording& other)
 
 SongRecording& SongRecording::operator=(const SongRecording& other) {
   if (this != &other) {
+    string* newArtistNames = new string[other.numArtists];
+    for (int i = 0; i < other.numArtists; ++i) {
+      newArtistNames[i] = other.artistNames[i];
+    }
+
     delete[] artistNames;  // Free existing memory
+    artistNames = newArtistNames;
 
     title = other.title;
     numArtists = other.numArtists;
     trackLength = other.trackLength;
-
-    artistNames = new string[numArtists];
-    for (int i = 0; i < numArtists; ++i) {
-      artistNames[i] = other.artistNames[i];
-    }
   }
   return *this;
 }
@@ -63,43 +62,37 @@ int SongRecording::GetNumArtists() const {
   return numArtists;
 }
 
-void SongRecording::SetNumArtists(int numArtists) {
-  if (numArtists > 0 && numArtists != numArtists) {
-    string* newArtists = new string[numArtists];
-    int minArtists = (numArtists < numArtists) ?
-                      numArtists : numArtists;
-    for (int i = 0; i < minArtists; ++i) {
+void SongRecording::SetNumArtists(int newNumArtists) {
+  if (newNumArtists > 0 && newNumArtists != this->numArtists) {
+    string* newArtists = new string[newNumArtists];
+    int copyCount = this->numArtists < newNumArtists ?
+                    this->numArtists : newNumArtists;
+    for (int i = 0; i < copyCount; ++i) {
       newArtists[i] = artistNames[i];
     }
-    for (int i = numArtists; i < numArtists; ++i) {
+    for (int i = this->numArtists; i < newNumArtists; ++i) {
       newArtists[i] = "unknown";
     }
     delete[] artistNames;
     artistNames = newArtists;
-    numArtists = numArtists;
+    this->numArtists = newNumArtists;
   }
 }
 
 void SongRecording::SetArtist(const string& name, int index) {
-  if (index > 0 && index <= numArtists) {
-    artistNames[index - 1] = name.empty() ? "unknown" : name;
-  } else {
-    artistNames[0] = "unknown";
+  if (!name.empty() && index > 0 && index <= numArtists) {
+    artistNames[index - 1] = name;
   }
 }
 
 string SongRecording::GetArtist(int index) const {
   if (index > 0 && index <= numArtists) {
     return artistNames[index - 1].empty() ? "unknown" : artistNames[index - 1];
-  } else {
-    return "unknown";
   }
+  return "out of bounds";
 }
 
 int SongRecording::GetTrackLength() const {
-  if (trackLength < 0) {
-    return 0;
-  }
   return trackLength;
 }
 
