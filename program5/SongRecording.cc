@@ -7,10 +7,12 @@ using std::string;
 
 namespace csce240_programming_assignment_5 {
 
-SongRecording::SongRecording(const string& title, const string& primaryArtist,
-                             int trackLength, int numArtists)
-    : title(title), trackLength(trackLength >= 0 ?
-      trackLength : 0), numArtists(numArtists > 0 ? numArtists : 1) {
+SongRecording::SongRecording(const string& title,
+                             const string& primaryArtist,
+                             int trackLength,
+                             int numArtists)
+    : title(title), trackLength(trackLength >= 0 ? trackLength : 0),
+      numArtists(numArtists > 0 ? numArtists : 1) {
   artistNames = new string[this->numArtists];
   artistNames[0] = primaryArtist;  // Assigning the primary artist
   for (int i = 1; i < this->numArtists; ++i) {
@@ -19,8 +21,8 @@ SongRecording::SongRecording(const string& title, const string& primaryArtist,
 }
 
 SongRecording::SongRecording(const SongRecording& other)
-    : title(other.title), numArtists(other.numArtists),
-      trackLength(other.trackLength) {
+    : title(other.title), trackLength(other.trackLength),
+      numArtists(other.numArtists) {
   artistNames = new string[numArtists];
   for (int i = 0; i < numArtists; ++i) {
     artistNames[i] = other.artistNames[i];

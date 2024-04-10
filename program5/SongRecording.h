@@ -4,19 +4,20 @@
 
 #include <iostream>
 #include <string>
+using std::string;
 
 namespace csce240_programming_assignment_5 {
 
 class SongRecording {
  private:
-    std::string title;
-    std::string *artistNames;
-    int numArtists;
+    string title;
     int trackLength;
+    int numArtists;
+    string* artistNames;
 
  public:
-  SongRecording(const std::string &title = "untitled",
-                const std::string &primaryArtist = "unknown",
+  SongRecording(const string& title = "untitled",
+                const string& primaryArtist = "unknown",
                 int trackLength = 0,
                 int numArtists = 1);
 
@@ -27,14 +28,14 @@ class SongRecording {
   // Destructor
   ~SongRecording();
 
-  std::string GetTitle() const;
-  void SetTitle(const std::string &title);
+  string GetTitle() const;
+  void SetTitle(const string &title);
 
   int GetNumArtists() const;
   void SetNumArtists(int numArtists);
 
-  void SetArtist(const std::string &name, int index = 1);
-  std::string GetArtist(int index = 1) const;
+  void SetArtist(const string &name, int index = 1);
+  string GetArtist(int index = 1) const;
 
   int GetTrackLength() const;
   void SetTrackLength(int length);
