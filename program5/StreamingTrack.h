@@ -21,7 +21,6 @@ class StreamingTrack : public SongRecording {
                  int numArtists = 1,
                  const std::string& primaryGenre = "pop",
                  int numStreams = 0);
-
   // Copy constructor
   StreamingTrack(const StreamingTrack& other);
   // Additional constructor
@@ -45,5 +44,6 @@ class StreamingTrack : public SongRecording {
 };
 
 }  // namespace csce240_programming_assignment_5
+
 
 #endif  // PROGRAM5_STREAMINGTRACK_H_

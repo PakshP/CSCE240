@@ -3,7 +3,6 @@
 #include <string>
 
 #include "StreamingTrack.h"
-#include "SongRecording.h"
 
 namespace csce240_programming_assignment_5 {
 
@@ -12,44 +11,42 @@ StreamingTrack::StreamingTrack(const std::string& title,
                                int trackLength,
                                int numArtists,
                                const std::string& primaryGenre,
-                               int numStreams) :
-                               SongRecording(title, primaryArtist,
-                                             trackLength, numArtists,
-                                             primaryGenre) {
-  numStreams = numStreams;
-  numGenres = 0;
-  genres = new std::string[1];
-}
-
-StreamingTrack::StreamingTrack(const StreamingTrack& other) :
-                               SongRecording(other) {
-  numStreams = other.numStreams;
-  numGenres = other.numGenres;
+                               int numStreams)
+    : SongRecording(title, primaryArtist, trackLength, numArtists),
+                      numStreams(numStreams), numGenres(1) {
   genres = new std::string[numGenres];
-  for (int i = 0; i < numGenres; ++i)
-    genres[i] = other.genres[i];
+  genres[0] = primaryGenre;
 }
 
-StreamingTrack::StreamingTrack(const SongRecording& song,
-                               const std::string& primaryGenre,
-                               int numStreams) : SongRecording(song) {
-  numStreams = numStreams;
-  numGenres = 0;
-  genres = new std::string[1];
+StreamingTrack::StreamingTrack(const StreamingTrack& other)
+    : SongRecording(other), numStreams(other.numStreams),
+                            numGenres(other.numGenres) {
+  genres = new std::string[numGenres];
+  for (int i = 0; i < numGenres; ++i) {
+    genres[i] = other.genres[i];
+  }
+}
+
+StreamingTrack::StreamingTrack(const SongRecording& song, const std::string&
+                               primaryGenre, int numStreams)
+    : SongRecording(song), numStreams(numStreams), numGenres(1) {
+  genres = new std::string[numGenres];
+  genres[0] = primaryGenre;
 }
 
 StreamingTrack& StreamingTrack::operator=(const StreamingTrack& other) {
-  if (this == &other)
-    return *this;
+  if (this != &other) {
+    SongRecording::operator=(other);  // Handle base class assignment
+    delete[] genres;  // Free existing memory
 
-  SongRecording::operator=(other);
+    numStreams = other.numStreams;
+    numGenres = other.numGenres;
 
-  numStreams = other.numStreams;
-  numGenres = other.numGenres;
-  genres = new std::string[numGenres];
-  for (int i = 0; i < numGenres; ++i)
-    genres[i] = other.genres[i];
-
+    genres = new std::string[numGenres];
+    for (int i = 0; i < numGenres; ++i) {
+      genres[i] = other.genres[i];
+    }
+  }
   return *this;
 }
 
@@ -62,11 +59,15 @@ int StreamingTrack::GetStreams() const {
 }
 
 void StreamingTrack::SetStreams(int streams) {
-  numStreams = streams;
+  if (streams >= 0) {
+    numStreams = streams;
+  }
 }
 
 void StreamingTrack::AddStreams(int streams) {
-  numStreams += streams;
+  if (streams >= 0) {
+    numStreams += streams;
+  }
 }
 
 int StreamingTrack::GetNumGenres() const {
@@ -74,46 +75,47 @@ int StreamingTrack::GetNumGenres() const {
 }
 
 std::string StreamingTrack::GetGenre(int index) const {
-  if (index < 0 || index >= numGenres)
-    return "";
-  return genres[index];
+  if (index > 0 && index <= numGenres) {
+    return genres[index - 1];
+  } else {
+    return "out of bounds";
+  }
 }
 
 bool StreamingTrack::IsGenre(const std::string& genre) const {
-  for (int i = 0; i < numGenres; ++i)
-    if (genres[i] == genre)
+  for (int i = 0; i < numGenres; ++i) {
+    if (genres[i] == genre) {
       return true;
+    }
+  }
   return false;
 }
 
 void StreamingTrack::AddGenre(const std::string& genre) {
-  std::string* temp = new std::string[numGenres + 1];
-  for (int i = 0; i < numGenres; ++i)
-    temp[i] = genres[i];
-  temp[numGenres] = genre;
-  delete[] genres;
-  genres = temp;
-  ++numGenres;
+  if (!IsGenre(genre)) {
+    std::string* newGenres = new std::string[numGenres + 1];
+    for (int i = 0; i < numGenres; ++i) {
+      newGenres[i] = genres[i];
+    }
+    newGenres[numGenres] = genre;
+    delete[] genres;
+    genres = newGenres;
+    ++numGenres;
+  }
 }
 
 void StreamingTrack::RemoveGenre(const std::string& genre) {
-  int index = -1;
-  for (int i = 0; i < numGenres; ++i)
-    if (genres[i] == genre) {
-      index = i;
-      break;
+  if (IsGenre(genre)) {
+    std::string* newGenres = new std::string[numGenres - 1];
+    for (int i = 0, j = 0; i < numGenres; ++i) {
+      if (genres[i] != genre) {
+        newGenres[j++] = genres[i];
+      }
     }
-  if (index == -1)
-    return;
-
-  std::string* temp = new std::string[numGenres - 1];
-  for (int i = 0; i < index; ++i)
-    temp[i] = genres[i];
-  for (int i = index + 1; i < numGenres; ++i)
-    temp[i - 1] = genres[i];
-  delete[] genres;
-  genres = temp;
-  --numGenres;
+    delete[] genres;
+    genres = newGenres;
+    --numGenres;
+  }
 }
 
 }  // namespace csce240_programming_assignment_5
