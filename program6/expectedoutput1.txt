@@ -1,0 +1,130 @@
+original
+right isosceles triangle
+x 
+x x 
+x x x 
+x x x x 
+x x x x x 
+x x x x x x 
+x x x x x x x 
+times 2
+right isosceles triangle
+x 
+x x 
+x x x 
+x x x x 
+x x x x x 
+x x x x x x 
+x x x x x x x 
+x x x x x x x x 
+x x x x x x x x x 
+x x x x x x x x x x 
+x x x x x x x x x x x 
+x x x x x x x x x x x x 
+x x x x x x x x x x x x x 
+x x x x x x x x x x x x x x 
+original
+rectangle
+~ ~ ~ 
+~ ~ ~ 
+~ ~ ~ 
+~ ~ ~ 
+~ ~ ~ 
+times 2
+rectangle
+~ ~ ~ ~ ~ ~ 
+~ ~ ~ ~ ~ ~ 
+~ ~ ~ ~ ~ ~ 
+~ ~ ~ ~ ~ ~ 
+~ ~ ~ ~ ~ ~ 
+~ ~ ~ ~ ~ ~ 
+~ ~ ~ ~ ~ ~ 
+~ ~ ~ ~ ~ ~ 
+~ ~ ~ ~ ~ ~ 
+~ ~ ~ ~ ~ ~ 
+original
+rectangle
+@ @ @ @ @ @ @ @ @ @ 
+@ @ @ @ @ @ @ @ @ @ 
+@ @ @ @ @ @ @ @ @ @ 
+@ @ @ @ @ @ @ @ @ @ 
+@ @ @ @ @ @ @ @ @ @ 
+@ @ @ @ @ @ @ @ @ @ 
+times 2
+rectangle
+@ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ 
+@ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ 
+@ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ 
+@ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ 
+@ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ 
+@ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ 
+@ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ 
+@ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ 
+@ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ 
+@ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ 
+@ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ 
+@ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ 
+original
+right isosceles triangle
++ 
++ + 
++ + + 
++ + + + 
+times 2
+right isosceles triangle
++ 
++ + 
++ + + 
++ + + + 
++ + + + + 
++ + + + + + 
++ + + + + + + 
++ + + + + + + + 
+original
+right isosceles triangle
+\ 
+\ \ 
+times 2
+right isosceles triangle
+\ 
+\ \ 
+\ \ \ 
+\ \ \ \ 
+original
+rectangle
+= 
+= 
+= 
+= 
+= 
+= 
+= 
+= 
+times 2
+rectangle
+= = 
+= = 
+= = 
+= = 
+= = 
+= = 
+= = 
+= = 
+= = 
+= = 
+= = 
+= = 
+= = 
+= = 
+= = 
+= = 
+original
+rectangle
+I I I I I I I I I 
+I I I I I I I I I 
+times 2
+rectangle
+I I I I I I I I I I I I I I I I I I 
+I I I I I I I I I I I I I I I I I I 
+I I I I I I I I I I I I I I I I I I 
+I I I I I I I I I I I I I I I I I I 

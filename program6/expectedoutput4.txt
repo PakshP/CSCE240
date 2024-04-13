@@ -1,0 +1,83 @@
+original
+right isosceles triangle
+x 
+x x 
+x   x 
+x     x 
+x       x 
+x         x 
+x x x x x x x 
+times 0.5
+right isosceles triangle
+x 
+x x 
+x x x 
+original
+rectangle
+~ ~ ~ 
+~   ~ 
+~   ~ 
+~   ~ 
+~ ~ ~ 
+times 0.5
+rectangle
+~ 
+~ 
+original
+rectangle
+@ @ @ @ @ @ @ @ @ @ 
+@                 @ 
+@                 @ 
+@                 @ 
+@                 @ 
+@ @ @ @ @ @ @ @ @ @ 
+times 0.5
+rectangle
+@ @ @ @ @ 
+@       @ 
+@ @ @ @ @ 
+original
+right isosceles triangle
++ 
++ + 
++   + 
++ + + + 
+times 0.5
+right isosceles triangle
++ 
++ + 
+original
+right isosceles triangle
+\ 
+\ \ 
+times 0.5
+right isosceles triangle
+\ 
+\ \ 
+original
+rectangle
+= 
+= 
+= 
+= 
+= 
+= 
+= 
+= 
+times 0.5
+rectangle
+= 
+= 
+= 
+= 
+= 
+= 
+= 
+= 
+original
+rectangle
+I I I I I I I I I 
+I I I I I I I I I 
+times 0.5
+rectangle
+I I I I 
