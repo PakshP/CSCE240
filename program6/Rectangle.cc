@@ -43,7 +43,7 @@ namespace CSCE240_Program6 {
     return *this;
   }
   void Rectangle::Print(bool fill) const {
-    std::cout << "Shape: " << GetName() << std::endl;
+    std::cout << GetName() << std::endl;
     for (int i = 0; i < length; ++i) {
       for (int j = 0; j < width; ++j) {
         if (fill || i == 0 || i == length - 1 || j == 0 || j == width - 1) {

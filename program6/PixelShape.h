@@ -24,7 +24,7 @@ class PixelShape {
 
     virtual void Print(bool fill = true) const;
 
-    // virtual PixelShape& operator*=(double factor) = 0;
+    virtual PixelShape& operator*=(double factor) = 0;
 };
 
 }  // namespace CSCE240_Program6

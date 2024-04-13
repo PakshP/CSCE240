@@ -28,12 +28,25 @@ namespace CSCE240_Program6 {
     }
 
     void RightIsosceles::Print(bool fill) const {
-        std::cout << "Shape: " << GetName() << std::endl;
+    std::cout << GetName() << std::endl;
+    if (fill) {
         for (int i = 1; i <= legLength; ++i) {
             for (int j = 1; j <= i; ++j) {
                 std::cout << GetPixel() << " ";
             }
             std::cout << std::endl;
         }
+    } else {
+        for (int i = 1; i <= legLength; ++i) {
+            for (int j = 1; j <= i; ++j) {
+                if (j == 1 || j == i || i == legLength) {
+                    std::cout << GetPixel() << " ";
+                } else {
+                    std::cout << "  ";
+                }
+            }
+            std::cout << std::endl;
+        }
+    }
     }
 }  // namespace CSCE240_Program6
