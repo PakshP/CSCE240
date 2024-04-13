@@ -7,12 +7,12 @@
 namespace CSCE240_Program6 {
 
 class PixelShape {
-private:
+ private:
     std::string name_;
     char pixel_;
 
-public:
-    PixelShape(const std::string& name = "?", char pixel = '*');
+ public:
+    explicit PixelShape(const std::string& name = "?", char pixel = '*');
 
     virtual ~PixelShape() {}
 
@@ -27,6 +27,6 @@ public:
     // virtual PixelShape& operator*=(double factor) = 0;
 };
 
-} // namespace CSCE240_Program6
+}  // namespace CSCE240_Program6
 
-#endif // PROGRAM6_PIXELSHAPE_H_
+#endif  // PROGRAM6_PIXELSHAPE_H_

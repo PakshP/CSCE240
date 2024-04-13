@@ -5,7 +5,8 @@
 namespace CSCE240_Program6 {
 
 PixelShape::PixelShape(const std::string& name, char pixel)
-  : name_((name.empty() ? "?" : name)), pixel_(pixel) {
+  : name_((name.empty() ? "?" : name)),
+    pixel_((pixel >= 33 && pixel <= 126) ? pixel : '*') {
 }
 
 void PixelShape::SetName(const std::string& name) {
@@ -24,4 +25,4 @@ void PixelShape::Print(bool fill) const {
     std::cout << name_ << std::endl;
 }
 
-} // namespace CSCE240_Program6
+}  // namespace CSCE240_Program6
