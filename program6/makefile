@@ -68,5 +68,5 @@ testPrint4 : testVirtualPrints checkit
 	./checkit 3
 
 clean :
-	rm  *.o testVirtualPrints checkit studentoutput*.txt
+	rm  *.out *.o testVirtualPrints checkit studentoutput*.txt
 
